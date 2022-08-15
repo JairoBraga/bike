@@ -1,7 +1,7 @@
 package com.neto.bike.controller;
 
 import com.neto.bike.domain.dto.BikeDTO;
-import com.neto.bike.domain.entities.service.BikeService;
+import com.neto.bike.usercase.boundaries.BikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +21,7 @@ public class BikeController {
         return ResponseEntity.ok(bikeList);
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<BikeDTO> getBike(@PathVariable Long id){
         BikeDTO bike = bikeService.getBike(id);
         return ResponseEntity.ok(bike);
