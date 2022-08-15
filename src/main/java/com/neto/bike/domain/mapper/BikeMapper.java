@@ -6,14 +6,14 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface BikeMapper {
 
-    BikeMapper INSTANCE = Mappers.getMapper( BikeMapper.class );
+    BikeMapper INSTANCE = Mappers.getMapper(BikeMapper.class);
 
-    @Mapping(source = "bikeEntity", target = "bikeDTO")
+
     BikeDTO bikeToDTO(Bike bike);
 
-    @Mapping(source = "bikeDTO", target = "bikeEntity")
+
     Bike dtoToEntity(BikeDTO bike);
 }

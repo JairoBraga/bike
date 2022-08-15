@@ -7,10 +7,12 @@ import com.neto.bike.domain.mapper.BikeMapper;
 import com.neto.bike.repository.BikeRepository;
 import com.neto.bike.usercase.boundaries.BikeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class BikeServiceImpl implements BikeService {
 
     @Autowired
