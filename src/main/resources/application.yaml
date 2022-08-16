@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://${host_name}:${db_port}/${db_name}
+    url: jdbc:mysql://${host_name}:${db_port}/${db_name}?createDatabaseIfNotExist=true
     username: ${db_username}
     password: ${db_password}
     jpa:

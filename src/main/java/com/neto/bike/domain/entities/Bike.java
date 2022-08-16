@@ -1,9 +1,6 @@
 package com.neto.bike.domain.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,10 +9,14 @@ public class Bike {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
     private String regiao;
+    @Column(name = "id_locatario")
     private Long idLocatario;
+    @Column(name = "ultimo_aluguel")
     private LocalDateTime ultimoAluguel;
+    @Column(name = "veiculo_alugado")
     private Boolean veiculoAlugado;
 
     public Bike() {
