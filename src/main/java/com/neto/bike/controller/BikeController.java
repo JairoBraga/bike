@@ -3,6 +3,7 @@ package com.neto.bike.controller;
 import com.neto.bike.domain.dto.BikeDTO;
 import com.neto.bike.usercase.boundaries.BikeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +33,20 @@ public class BikeController {
             bikeService.novaBike(bikeDTO);
             return ResponseEntity.ok(bikeDTO);
     }
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletarBike(@RequestBody BikeDTO bikeDTO){
+        bikeService.removerBike(bikeDTO);
+    }
 
-
+    @PostMapping("/alugar")
+    public BikeDTO locarBike(@RequestBody BikeDTO bikeDTO){
+        BikeDTO updatedBike = bikeService.alugarBike(bikeDTO);
+        return updatedBike;
+    }
+    @PostMapping("/entrega")
+    public BikeDTO entregarBike(@RequestBody BikeDTO bikeDTO){
+        BikeDTO updatedBike = bikeService.entregarBike(bikeDTO);
+        return updatedBike;
+    }
 }

@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class BikeServiceImpl implements BikeService {
-
     @Autowired
     private BikeMapper bikeMapper;
     @Autowired
@@ -27,7 +26,7 @@ public class BikeServiceImpl implements BikeService {
     }
 
     @Override
-    public BikeDTO getBike(Long id) throws BikeNotFound {
+    public BikeDTO getBike(Long id){
         Bike bike = bikeRepository.findById(id).orElseThrow(() -> new BikeNotFound());
         BikeDTO bikeDTO = bikeMapper.bikeToDTO(bike);
         return bikeDTO;
@@ -39,5 +38,38 @@ public class BikeServiceImpl implements BikeService {
         Bike savedBike = bikeRepository.save(novaBike);
         newBike.setId(savedBike.getId());
         return newBike;
+    }
+
+    @Override
+    public void removerBike(BikeDTO bikeDTO) {
+        Bike bike = bikeRepository.findById(bikeDTO.getId()).orElseThrow(() -> new BikeNotFound());
+        bikeRepository.delete(bike);
+    }
+
+    @Override
+    public BikeDTO alugarBike(BikeDTO bikeDTO) {
+        Bike bike = bikeRepository.findById(bikeDTO.getId()).orElseThrow(() -> new BikeNotFound());
+        updateCamposAluguel(bike,bikeDTO);
+        bikeRepository.save(bike);
+        return bikeMapper.bikeToDTO(bike);
+    }
+
+    @Override
+    public BikeDTO entregarBike(BikeDTO bikeLocada) {
+        Bike bike = bikeRepository.findById(bikeLocada.getId()).orElseThrow(() -> new BikeNotFound());
+        updateCamposEntrega(bike,bikeLocada);
+        bikeRepository.save(bike);
+        return bikeMapper.bikeToDTO(bike);
+    }
+
+    private void updateCamposAluguel(Bike bike, BikeDTO updateBike){
+        bike.setUltimoAluguel(updateBike.getUltimoAluguel());
+        bike.setIdLocatario(updateBike.getIdLocatario());
+        bike.setVeiculoAlugado(true);
+    }
+    private void updateCamposEntrega(Bike bike, BikeDTO updateBike){
+        bike.setIdLocatario(null);
+        bike.setRegiao(updateBike.getRegiao());
+        bike.setVeiculoAlugado(false);
     }
 }
