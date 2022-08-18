@@ -9,7 +9,7 @@ phases:
     commands:
     - echo installing maven...
     - sudo yum update -y
-    - sudo yum install -y java-11-openjdk-devel
+    - sudo yum install -y java-11-amazon-corretto
     - sudo yum install -y maven-3.2.5
   build:
     commands:
