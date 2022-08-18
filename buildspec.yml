@@ -10,7 +10,7 @@ phases:
     - echo installing maven...
     - sudo yum update -y
     - sudo yum install -y java-11-amazon-corretto
-    - sudo yum install -y maven-3.2.5
+    - sudo yum install -y maven-3.2.0
   build:
     commands:
     - echo build the app
