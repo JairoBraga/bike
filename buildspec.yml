@@ -14,7 +14,7 @@ phases:
   build:
     commands:
     - echo build the app
-    - mvn install
+    - mvn install -Dmaven.test.skip=true
 artifacts:
   files:
     - target/*.jar
