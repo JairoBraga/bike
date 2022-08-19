@@ -9,8 +9,8 @@ phases:
     commands:
     - echo installing maven...
     - sudo apt-get update
-    - sudo apt-get install openjdk-11-jdk
-    - sudo apt-get install maven
+    - sudo apt-get install -y openjdk-11-jdk
+    - sudo apt-get install -y maven
   build:
     commands:
     - echo build the app
