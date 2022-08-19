@@ -2,15 +2,15 @@ version: 0.1
 
 env:
   variables:
-    JAVA_HOME: "/usr/lib/jvm/java-11-openjdk-amd64"
+    JAVA_HOME: "/usr/lib/jvm/openjdk-11-jdk"
 
 phases:
   install:
     commands:
     - echo installing maven...
-    - sudo yum update -y
-    - sudo yum install -y java-11-amazon-corretto
-    - sudo yum install -y maven
+    - sudo apt-get update
+    - sudo apt-get install openjdk-11-jdk
+    - sudo apt-get install maven
   build:
     commands:
     - echo build the app
