@@ -1,0 +1,21 @@
+version: 0.1
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user
+
+hooks:
+  AfterInstall:
+    -location: fix_previleges.sh
+    timeout: 300
+    runas: root
+  ApplicationStart:
+    -location: start_application.sh
+    timeout: 700
+    runas: root
+  ApplicationStop:
+    -location: stop_appliocation.sh
+    timeout: 700
+    runas: root
+
+
